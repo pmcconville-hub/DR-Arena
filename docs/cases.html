@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>DR-Arena: Case Studies & Statistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <style>
+    body { font-family: 'Noto Sans', sans-serif; background-color: #fdfdfd; }
+    .hero-body { padding: 2rem 1.5rem; }
+    
+    /* Custom Box Styles matching LaTeX Promptbox */
+    .prompt-box {
+      border: 1px solid #4a4a4a;
+      background-color: #fcfcfc;
+      border-radius: 6px;
+      padding: 0;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .prompt-header {
+      background-color: #363636;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      font-weight: bold;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    .prompt-content {
+      padding: 1.5rem;
+    }
+    .prompt-divider {
+      border-bottom: 1px dashed #dbdbdb;
+      margin: 1rem 0;
+    }
+
+    /* Verdict Tags */
+    .verdict-tag { font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .verdict-a { color: #3273dc; }
+    .verdict-b { color: #00947e; }
+    
+    /* Text Highlights */
+    .text-red { color: #d00000; font-weight: bold; }
+    .text-green { color: #008000; font-weight: bold; }
+    .text-blue { color: #005cc5; font-weight: bold; }
+    
+    /* Highlight Background for Key Points */
+    .highlight-text {
+      background-color: #fff8c5;
+      padding: 0 4px;
+      border-radius: 3px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* Scrollable Table Wrapper for Stats */
+    .table-container-scroll {
+      max-height: 500px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+    }
+    
+    .tabs li.is-active a {
+      border-bottom-color: #363636;
+      color: #363636;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero is-dark is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">🔬 DR-Arena: Detailed Analysis</h1>
+        <h2 class="subtitle">Full Example Tasks, Comprehensive Statistics, and Qualitative Case Studies.</h2>
+        <a href="index.html" class="button is-light is-outlined is-small">
+          <span class="icon"><i class="fas fa-arrow-left"></i></span>
+          <span>Back to Main Page</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      
+      <div class="tabs is-centered is-boxed is-medium">
+        <ul>
+          <li class="is-active" data-tab="tab-walkthrough"><a>Match Walkthrough</a></li>
+          <li data-tab="tab-examples"><a>Generated Tasks (5 Examples)</a></li>
+          <li data-tab="tab-stats"><a>Full Dataset Stats</a></li>
+          <li data-tab="tab-qualitative"><a>Qualitative Analysis</a></li>
+        </ul>
+      </div>
+
+      <div id="tab-walkthrough" class="content-tab">
+        <div class="notification is-info is-light">
+          <strong>Full Match Trace:</strong> A 5-round battle between <strong>Perplexity-Sonar-Pro (Agent A)</strong> and <strong>Claude-Opus-4.1 (Agent B)</strong> on the topic "Handheld Game Consoles".
+        </div>
+        
+        <div class="box prompt-box">
+          <div class="prompt-header">Round 1: Initialization (Depth 2 | Width 2)</div>
+          <div class="prompt-content">
+            <p><strong>Question:</strong> Identify the two handheld game consoles released in the 1990s that were uniquely designed to play the exact same physical game media as their manufacturer's home console counterparts. Provide launch price, battery count, and battery life.</p>
+            <div class="prompt-divider"></div>
+            <div class="columns">
+              <div class="column"><strong>Agent A (Sonar):</strong> Correctly identified <span class="highlight-text">NEC TurboExpress</span> and <span class="highlight-text">Sega Nomad</span>. Used bullet points for Price ($249.99/$179.99), Batteries (6 AA), and Life (~3 hrs).</div>
+              <div class="column"><strong>Agent B (Claude):</strong> Correctly identified the same entities and data, but used narrative paragraphs.</div>
+            </div>
+            <p class="mt-2"><span class="verdict-tag verdict-a">Verdict: Agent A Better</span> — Won on presentation (scannability).</p>
+            <p><strong>Evolution Action:</strong> <span class="tag is-danger is-light">Pressure Test (Deep+1 & Wide+1)</span></p>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Round 2: Complexity Increase (Depth 2 | Width 3)</div>
+          <div class="prompt-content">
+            <p><strong>Question:</strong> Identify the 8-bit handheld (1989) that succeeded 'Game & Watch' and included <em>Tetris</em>. Contrast battery specs against Atari Lynx and Sega Game Gear.</p>
+            <div class="columns">
+              <div class="column"><strong>Agent A:</strong> Identified Game Boy. Estimated battery life as "10-15 hours" (Conservative/Early spec).</div>
+              <div class="column"><strong>Agent B:</strong> Identified Game Boy. Estimated battery life as <span class="highlight-text">"15-35 hours"</span> (closer to retrospective consensus). Provided valid URL citations.</div>
+            </div>
+            <p class="mt-2"><span class="verdict-tag verdict-b">Verdict: Agent B Better</span> — Won on content accuracy regarding retrospective comparisons.</p>
+            <p><strong>Evolution Action:</strong> <span class="tag is-warning is-light">Wide+1</span> (Loser failed Wide coverage)</p>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Round 3: Technical Detail Test (Depth 2 | Width 4)</div>
+          <div class="prompt-content">
+            <p><strong>Question:</strong> Identify three commercial color handhelds (1989-1991). Provide Price, CPU Architecture, and Battery Count.</p>
+            <div class="columns">
+              <div class="column"><strong>Agent A:</strong> Identified Lynx, Game Gear, TurboExpress. Correctly identified Lynx CPU as <span class="highlight-text">8-bit (6502 derivative)</span>. Excellent formatting.</div>
+              <div class="column"><strong>Agent B:</strong> Identified same units. Incorrectly stated Lynx CPU was <span class="text-red">"16-bit 65SC02"</span>.</div>
+            </div>
+            <p class="mt-2"><span class="verdict-tag verdict-a">Verdict: Agent A Better</span> — Won on Technical Accuracy (CPU Architecture).</p>
+            <p><strong>Evolution Action:</strong> <span class="tag is-danger is-light">Pressure Test</span></p>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Round 4: Differentiation Test (Depth 2 | Width 5)</div>
+          <div class="prompt-content">
+            <p><strong>Question:</strong> Identify the Game Boy's two primary competitors (one 1989, one 1991).</p>
+            <div class="columns">
+              <div class="column"><strong>Agent A:</strong> Identified Competitors as Atari Lynx and <span class="text-red">NEC TurboExpress</span>.</div>
+              <div class="column"><strong>Agent B:</strong> Identified Competitors as Atari Lynx and <span class="highlight-text">Sega Game Gear</span>.</div>
+            </div>
+            <p class="mt-2"><span class="verdict-tag verdict-b">Verdict: B MUCH BETTER</span> — Agent B correctly identified the Game Gear (primary competitor). TurboExpress was a niche product.</p>
+            <p><strong>Evolution Action:</strong> <span class="tag is-warning is-light">Wide+1</span></p>
+          </div>
+        </div>
+
+        <div class="box prompt-box" style="border-left: 5px solid #00947e;">
+          <div class="prompt-header">Round 5: The Final Blow (Depth 2 | Width 6)</div>
+          <div class="prompt-content">
+            <p><strong>Question:</strong> Identify the dominant 8-bit console and its two main competitors (1989 & 1991). Compare battery requirements. Describe the 1996 'Pocket' revision changes.</p>
+            <div class="columns">
+              <div class="column">
+                <strong>Agent A:</strong> Again identified "NEC TurboExpress" as main competitor. <br>
+                <span class="text-red">[DEEP FAILURE]</span> Logic Error.
+              </div>
+              <div class="column">
+                <strong>Agent B:</strong> Correctly identified "Sega Game Gear". Correctly described Pocket revision (<span class="highlight-text">AAA batteries, true black & white screen</span>).
+              </div>
+            </div>
+            <div class="prompt-divider"></div>
+            <p class="is-size-5"><span class="verdict-tag verdict-b">Verdict: B MUCH BETTER</span></p>
+            <p><strong>Reasoning:</strong> Agent A failed the Core Entity logic (Wrong Entity). This is a critical failure.</p>
+            <p><strong>Status:</strong> <span class="tag is-black">MERCY RULE TRIGGERED (Game Over)</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-examples" class="content-tab is-hidden">
+        <p class="mb-5">Five diverse examples of "Deep & Wide" research tasks generated by the Examiner. <span class="tag is-warning is-light">Key Grading Points are Highlighted</span></p>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Example 1: Local Business Structure Analysis</div>
+          <div class="prompt-content">
+            <p><strong>[QUESTION]</strong><br> Locate the gymnastics organization in the New York/New Jersey area that structures its competitive teams into three specific tiers: an in-house 'Club Team' that competes exclusively against the organization's other branches, a 'USA-IGC' program capped at 3 training days per week to accommodate other sports, and a third high-performance program that explicitly prohibits athletes from participating in other activities. Provide the name of this organization, the specific name of the high-performance program, and a list of all the cities where they currently operate gyms.</p>
+            <div class="prompt-divider"></div>
+            <p><strong>[CHECKLIST / GRADING KEY]</strong></p>
+            <ul>
+              <li><strong>Target Entity:</strong> <span class="highlight-text">Gold Medal Gymnastics</span> (or GMGC).</li>
+              <li><strong>Logic Proof:</strong> Identified via unique combination of internal-only 'Club Team' and 'Junior Olympic' program that prohibits other sports.</li>
+              <li><strong>Specific Details:</strong> 
+                <ul>
+                  <li>High-Performance Program Name: <span class="highlight-text">Junior Olympic Program</span></li>
+                  <li>Cities: <span class="highlight-text">Centereach, Garden City, Huntington, Levittown, Rocky Point, Short Hills, Smithtown</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Example 2: Cross-Domain Synthesis (Marketing & Labor)</div>
+          <div class="prompt-content">
+            <p><strong>[QUESTION]</strong><br> Locate the analysis by 'Marketing Eye Atlanta' regarding a viral charity campaign that involved a 'bucket of iced water' and the participation of 'the most feared woman in fashion.' Identify the campaign and list the five specific elements cited that made it go viral. Then, identifying the specific occupation defined by the Bureau of Labor Statistics (BLS) as professionals who 'create and maintain a positive public image for the clients they represent,' provide the following data points from the 2024 occupational profile: the 2024 median annual pay, the job outlook percentage for the 2024–34 decade, and the projected numeric employment change for that same period.</p>
+            <div class="prompt-divider"></div>
+            <p><strong>[CHECKLIST / GRADING KEY]</strong></p>
+            <ul>
+              <li><strong>Target Entity 1:</strong> <span class="highlight-text">ALS Ice Bucket Challenge</span> (identified via Marketing Eye Atlanta & Anna Wintour clue).</li>
+              <li><strong>Target Entity 2:</strong> <span class="highlight-text">Public Relations Specialists</span> (identified via BLS job description).</li>
+              <li><strong>Viral Elements:</strong> <span class="highlight-text">Emotional AND logical appeal, Celebrity certification, Amusement, Simplicity, Shareability.</span></li>
+              <li><strong>BLS Data:</strong> 
+                <ul>
+                  <li>2024 Median Annual Pay: <span class="highlight-text">$69,780</span></li>
+                  <li>Job Outlook (2024–34): <span class="highlight-text">5%</span> (Faster than average)</li>
+                  <li>Employment Change: <span class="highlight-text">15,000</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Example 3: Tech Policy & International Specifications</div>
+          <div class="prompt-content">
+            <p><strong>[QUESTION]</strong><br> Analyze the language support specifications for the 'Live Translation' feature powered by Apple Intelligence as detailed in the user guide covering macOS Tahoe and iOS 26. Determine which three languages are explicitly compatible with Live Translation in the Messages app but are not listed as supported for Live Translation in Phone and FaceTime calls. Following this, consult the terms and conditions for the Apple Store Singapore to find the specific return policy for products purchased in volume (defined as an aggregate of more than four items). Provide the names of the three distinct languages, the number of days allowed for a volume return, and the restocking fee percentage charged.</p>
+            <div class="prompt-divider"></div>
+            <p><strong>[CHECKLIST / GRADING KEY]</strong></p>
+            <ul>
+              <li><strong>Target Entity 1:</strong> <span class="highlight-text">Apple Intelligence Live Translation</span> (Logic: Compare Messages support list vs. Phone/FaceTime support list).</li>
+              <li><strong>Target Entity 2:</strong> <span class="highlight-text">Apple Store Singapore Policy</span> (Logic: 'returned in volume' > 4 items).</li>
+              <li><strong>Specific Details:</strong> 
+                <ul>
+                  <li>Languages: <span class="highlight-text">Dutch, Turkish, Vietnamese</span></li>
+                  <li>Volume Return Deadline: <span class="highlight-text">7 days</span></li>
+                  <li>Volume Restocking Fee: <span class="highlight-text">25%</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Example 4: Medical Service Scope & Pricing</div>
+          <div class="prompt-content">
+            <p><strong>[QUESTION]</strong><br> Investigate the remote medical second opinion service operated by the joint venture between Cleveland Clinic and Amwell. Provide a detailed breakdown of its geographic scope by listing the U.S. states eligible for the full 'Concierge Plus' virtual visit, those restricted to the written report only, and the specific states where the service is unavailable. Additionally, report the service costs for U.S. patients versus international patients, and enumerate the specific countries where the international service is prohibited.</p>
+            <div class="prompt-divider"></div>
+            <p><strong>[CHECKLIST / GRADING KEY]</strong></p>
+            <ul>
+              <li><strong>Target Entity:</strong> <span class="highlight-text">Virtual Second Opinions (VSO)</span> by 'The Clinic'.</li>
+              <li><strong>Specific Details:</strong>
+                <ul>
+                  <li>Excluded U.S. states: <span class="highlight-text">Maine, Rhode Island (R.I.), South Dakota (S.D.)</span></li>
+                  <li>U.S. Pricing: <span class="highlight-text">$1,690</span> (Report only) and <span class="highlight-text">$1,990</span> (Report + Virtual Visit)</li>
+                  <li>International Pricing: <span class="highlight-text">$4,500 USD</span></li>
+                  <li>Excluded Countries: <span class="highlight-text">Australia, China, Germany, Denmark, Greece, Iran, North Korea, South Korea, Kazakhstan, Malaysia, Russian Federation, Sweden, Turkey</span></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box prompt-box">
+          <div class="prompt-header">Example 5: Cultural Analysis (Music History)</div>
+          <div class="prompt-content">
+            <p><strong>[QUESTION]</strong><br> In a 1988 review by Steve Pond (RS 537), two distinct Los Angeles-bred acts were compared: one described as an "unprolific" artist making "immaculate pop music" with lushness borrowed from soundtracks, and the other a "young and restless" band labeled the "true heir to Led Zeppelin" but stripped of "fairy-tale whimsy." Despite their differences, the reviewer noted that both artists' respective albums from that year were populated by "recognizable, real people." Identify these two acts and their corresponding albums. Then, based on the specific descriptions in the review, list the following tracks: for the band, the two songs characterized as "hard-boiled riff rockers" and the acoustic song deemed a "worthy Left Coast successor to 'Walk on the Wild Side'"; for the songwriter, the two songs presenting "bucolic views of a childhood in New Orleans," the two "naive, devoted love songs," and the final track described as a "chilling, coldblooded moment" involving a message to his son.</p>
+            <div class="prompt-divider"></div>
+            <p><strong>[CHECKLIST / GRADING KEY]</strong></p>
+            <ul>
+              <li><strong>Band:</strong> <span class="highlight-text">Jane's Addiction</span> (Album: Nothing's Shocking).</li>
+              <li><strong>Songwriter:</strong> <span class="highlight-text">Randy Newman</span> (Album: Land of Dreams).</li>
+              <li><strong>Specific Songs (Band):</strong> "Had a Dad", "Standing in the Shower... Thinking", "Jane Says".</li>
+              <li><strong>Specific Songs (Songwriter):</strong> "Dixie Flyer", "New Orleans Wins the War", "Falling in Love", "Something Special", "I Want You to Hurt Like I Do".</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-stats" class="content-tab is-hidden">
+        <div class="columns">
+          <div class="column is-6">
+            <div class="box">
+              <h4 class="title is-5">Distribution of Source Domains</h4>
+              <p class="mb-3 is-size-7">The system successfully extracted verifiable structures from these authoritative sources.</p>
+              <div class="table-container-scroll">
+                <table class="table is-striped is-fullwidth stats-table is-size-7">
+                  <thead><tr><th>Source Domain</th><th>Count</th></tr></thead>
+                  <tbody>
+                    <tr><td>en.wikipedia.org</td><td>8</td></tr>
+                    <tr><td>gamefaqs.gamespot.com</td><td>2</td></tr>
+                    <tr><td>my.clevelandclinic.org</td><td>2</td></tr>
+                    <tr><td>support.apple.com</td><td>1</td></tr>
+                    <tr><td>www.creativebloq.com</td><td>1</td></tr>
+                    <tr><td>www.nyfa.edu</td><td>1</td></tr>
+                    <tr><td>www.kff.org</td><td>1</td></tr>
+                    <tr><td>gmgc.com</td><td>1</td></tr>
+                    <tr><td>www.finduslawyers.org</td><td>1</td></tr>
+                    <tr><td>demographicestimation.iussp.org</td><td>1</td></tr>
+                    <tr><td>www.nimh.nih.gov</td><td>1</td></tr>
+                    <tr><td>www.bls.gov</td><td>1</td></tr>
+                    <tr><td>info-ee.surrey.ac.uk</td><td>1</td></tr>
+                    <tr><td>www.laterpress.com</td><td>1</td></tr>
+                    <tr><td>www.becomeaprocomposer.com</td><td>1</td></tr>
+                    <tr><td>www.hhhistory.com</td><td>1</td></tr>
+                    <tr><td>online.nwmissouri.edu</td><td>1</td></tr>
+                    <tr><td>everettcc.libguides.com</td><td>1</td></tr>
+                    <tr><td>calpoison.org</td><td>1</td></tr>
+                    <tr><td>www.uscourts.gov</td><td>1</td></tr>
+                    <tr><td>open.umn.edu</td><td>1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="column is-6">
+            <div class="box">
+              <h4 class="title is-5">Distribution by Topic Hierarchy</h4>
+              <p class="mb-3 is-size-7">The dataset covers a diverse range of categories from Google Trends.</p>
+              <div class="table-container-scroll">
+                <table class="table is-striped is-fullwidth stats-table is-size-7">
+                  <thead><tr><th>Topic Hierarchy</th><th>Count</th></tr></thead>
+                  <tbody>
+                    <tr><td>Computers & Electronics > Software > Operating Systems</td><td>2</td></tr>
+                    <tr><td>Games > Computer & Video Games > Gaming Media & Reference</td><td>2</td></tr>
+                    <tr><td>Law & Government > Legal</td><td>2</td></tr>
+                    <tr><td>Arts & Entertainment > Movies > DVD & Video Shopping</td><td>1</td></tr>
+                    <tr><td>Arts & Entertainment > Online Media > Online Image Galleries</td><td>1</td></tr>
+                    <tr><td>Games > Computer & Video Games</td><td>1</td></tr>
+                    <tr><td>Health > Health Conditions > Respiratory Conditions</td><td>1</td></tr>
+                    <tr><td>Arts & Entertainment > Entertainment Industry > Film & TV Industry</td><td>1</td></tr>
+                    <tr><td>Law & Government > Public Safety > Public Health</td><td>1</td></tr>
+                    <tr><td>Sports > Individual Sports</td><td>1</td></tr>
+                    <tr><td>People & Society > Social Sciences</td><td>1</td></tr>
+                    <tr><td>Health > Mental Health > Learning & Developmental Disabilities</td><td>1</td></tr>
+                    <tr><td>Shopping > Apparel</td><td>1</td></tr>
+                    <tr><td>Shopping > Entertainment Media > DVD & Video Shopping</td><td>1</td></tr>
+                    <tr><td>Health > Vision Care</td><td>1</td></tr>
+                    <tr><td>Jobs & Education > Jobs</td><td>1</td></tr>
+                    <tr><td>Computers & Electronics > Consumer Electronics > Gadgets & Portable Electronics</td><td>1</td></tr>
+                    <tr><td>Arts & Entertainment > Music & Audio > Rock Music</td><td>1</td></tr>
+                    <tr><td>Books & Literature</td><td>1</td></tr>
+                    <tr><td>Online Communities</td><td>1</td></tr>
+                    <tr><td>Arts & Entertainment > Music & Audio > Music Equipment & Technology</td><td>1</td></tr>
+                    <tr><td>Online Communities > Dating & Personals</td><td>1</td></tr>
+                    <tr><td>Business & Industrial > Advertising & Marketing</td><td>1</td></tr>
+                    <tr><td>Beauty & Fitness</td><td>1</td></tr>
+                    <tr><td>Health > Public Health</td><td>1</td></tr>
+                    <tr><td>Law & Government > Government</td><td>1</td></tr>
+                    <tr><td>Sports > Team Sports</td><td>1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-qualitative" class="content-tab is-hidden">
+        
+        <h3 class="title is-4">1. The Factuality-Fluency Trade-off</h3>
+        <p class="mb-4">Automated Examiner strictly penalizes "hallucinated details," whereas humans often prioritize fluency.</p>
+        
+        <div class="box prompt-box">
+          <div class="prompt-header">Match Trace: Factuality vs. Fluency</div>
+          <div class="prompt-content">
+            <div class="notification is-light is-info is-small">
+              <strong>Ground Truth (Hidden):</strong> 
+              Software Devs: <span class="highlight-text">$131,450</span>. Managers: <span class="highlight-text">$171,200</span>. (2024 OOH Data).
+            </div>
+            
+            <div class="columns">
+              <div class="column">
+                <p><strong>Agent A (Claude-Opus)</strong><br><em>Fluent, Narrative</em></p>
+                <div class="box is-shadowless has-background-white-ter">
+                  "Managers significantly exceed the baseline with <span class="text-red">$169,510</span> median annual pay... <span class="text-red">Database Architects</span> earn..."
+                </div>
+                <p class="help is-danger">Cited 2023 data (Drift) & included excluded role.</p>
+              </div>
+              
+              <div class="column">
+                <p><strong>Agent B (Perplexity)</strong><br><em>Structured, Data-Centric</em></p>
+                <div class="box is-shadowless has-background-white-ter">
+                  "Only the following occupations have a higher median annual wage:<br>
+                  * Managers – <span class="text-blue">$171,200</span><br>
+                  * Research Scientists – <span class="text-blue">$140,910</span>"
+                </div>
+                <p class="help is-success">Perfect match with 2024 Context.</p>
+              </div>
+            </div>
+            <hr>
+            <p><strong>Verdict:</strong> <span class="verdict-tag verdict-b">B MUCH BETTER</span></p>
+            <p><strong>Reasoning:</strong> Agent A's fluency masked factual drifts (using previous year's data).</p>
+          </div>
+        </div>
+
+        <h3 class="title is-4 mt-6">2. Judge Hallucination (Knowledge Conflict)</h3>
+        <p class="mb-4">A failure mode where the Judge overrides valid Ground Truth due to internal parametric bias.</p>
+
+        <div class="box prompt-box" style="border-left: 5px solid #d00000;">
+          <div class="prompt-header has-background-danger">Failure Case: The Overconfident Judge</div>
+          <div class="prompt-content">
+            <p><strong>Context:</strong> GameFAQs 10th Anniversary Contest (2005). Winner: FF7.</p>
+            <div class="columns mt-3">
+              <div class="column">
+                <strong>Agent A:</strong> Correctly identified <em>Final Fantasy VII</em> as winner.
+              </div>
+              <div class="column">
+                <strong>Agent B:</strong> Incorrectly identified <em>Ocarina of Time</em> (Confused with 2009).
+              </div>
+            </div>
+            <div class="notification is-danger is-light mt-3">
+              <strong>Automated Verdict (INCORRECT):</strong> [[B_BETTER]] <br>
+              <strong>Judge's Reasoning:</strong> "First, it is necessary to address a discrepancy... The 10th Anniversary Contest (2005) was historically won by The Legend of Zelda: Ocarina of Time, not Final Fantasy VII... Agent B provided a perfectly accurate account."
+            </div>
+            <p><strong>Analysis:</strong> The Judge hallucinated the 2009 result onto the 2005 event, penalizing the correct agent.</p>
+          </div>
+        </div>
+
+        <h3 class="title is-4 mt-6">3. Beneficial Judge Correction</h3>
+        <p class="mb-4">The Judge acting as a "Safety Net" when the generated task contains errors.</p>
+
+        <div class="box prompt-box" style="border-left: 5px solid #008000;">
+          <div class="prompt-header has-background-success">Success Case: The Correcting Judge</div>
+          <div class="prompt-content">
+            <p><strong>Context:</strong> Generated Ground Truth incorrectly listed "Link" as runner-up. (Historical Truth: Cloud Strife).</p>
+            <div class="columns mt-3">
+              <div class="column">
+                <strong>Agent A:</strong> Followed hallucination or guessed wrong (Master Chief).
+              </div>
+              <div class="column">
+                <strong>Agent B:</strong> Correctly identified <em>Cloud Strife</em> and noted Link was eliminated earlier.
+              </div>
+            </div>
+            <div class="notification is-success is-light mt-3">
+              <strong>Automated Verdict (CORRECT):</strong> [[B_MUCH_BETTER]] <br>
+              <strong>Judge's Reasoning:</strong> "Note: The provided Ground Truth Checklist in the prompt lists 'Link' as the runner-up. Historically, Link was eliminated in the semi-finals by L-Block, making Cloud Strife the true runner-up. Agent B is awarded the win for factual accuracy despite the discrepancy with the provided checklist."
+            </div>
+            <p><strong>Analysis:</strong> The Judge prioritized historical truth over the flawed instruction.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Simple Tab Switching Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tabs li');
+      const tabContents = document.querySelectorAll('.content-tab');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('is-active'));
+          tab.classList.add('is-active');
+
+          const target = tab.dataset.tab;
+          tabContents.forEach(content => {
+            if (content.id === target) {
+              content.classList.remove('is-hidden');
+            } else {
+              content.classList.add('is-hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

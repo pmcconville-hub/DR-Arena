@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="DR-Arena: an Automated Evaluation Framework for Deep Research Agents">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DR-Arena: Automated Evaluation for Deep Research Agents</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <style>
+    body { font-family: 'Noto Sans', sans-serif; background-color: #f5f5f5; }
+    .hero-body { padding: 3rem 1.5rem; }
+    .title.is-1 { font-family: 'Google Sans', sans-serif; font-weight: 700; }
+    .publication-authors { font-size: 1.2rem; margin-top: 20px; }
+    .publication-links { margin-top: 20px; }
+    .box { box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1); border-radius: 8px; }
+    
+    /* Leaderboard Styling */
+    .leaderboard-table th { background-color: #3e8ed0; color: white; text-align: center; }
+    .leaderboard-table td { text-align: center; vertical-align: middle; }
+    .badge-first { background-color: #ffd700; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    .badge-second { background-color: #c0c0c0; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    .badge-third { background-color: #cd7f32; color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    
+    .figure-caption { color: #666; font-size: 0.9rem; text-align: center; margin-top: 10px; font-style: italic; }
+    .section-title { margin-bottom: 2rem !important; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+    
+    /* Justify text for better reading */
+    .content p { text-align: justify; }
+  </style>
+</head>
+<body>
+
+  <section class="hero is-white">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">DR-Arena: an Automated Evaluation Framework for Deep Research Agents</h1>
+            
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Yiwen Gao<sup>1*</sup>,</span>
+              <span class="author-block">Ruochen Zhao<sup>2*</sup>,</span>
+              <span class="author-block">Yang Deng<sup>3</sup>,</span>
+              <span class="author-block">Wenxuan Zhang<sup>4†</sup></span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>1</sup>National University of Singapore,</span>
+              <span class="author-block"><sup>2</sup>Nanyang Technological University,</span>
+              <span class="author-block"><sup>3</sup>Singapore Management University,</span>
+              <span class="author-block"><sup>4</sup>Singapore University of Technology and Design</span>
+            </div>
+
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2601.10504" class="button is-dark is-rounded is-outlined">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/iNLP-Lab/DR-Arena" class="button is-dark is-rounded is-outlined">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code & Data</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="cases.html" class="button is-link is-rounded">
+                  <span class="icon"><i class="fas fa-search"></i></span>
+                  <span>🔍 Explore Case Studies</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">Abstract</h2>
+          <div class="content">
+            <p>
+              As Large Language Models (LLMs) increasingly operate as <strong>Deep Research (DR) Agents</strong> capable of autonomous investigation and information synthesis, reliable evaluation of their task performance has become a critical bottleneck. Current benchmarks predominantly rely on static datasets, which suffer from several limitations: <i>limited task generality</i>, <i>temporal misalignment</i>, and <i>data contamination</i>. 
+            </p>
+            <p>
+              To address these, we introduce <strong>DR-Arena</strong>, a fully automated evaluation framework that pushes DR agents to their capability limits through dynamic investigation. DR-Arena constructs real-time Information Trees from fresh web trends to ensure the evaluation rubric is synchronized with the live world state, and employs an automated Examiner to generate structured tasks testing two orthogonal capabilities: <i>Deep reasoning</i> and <i>Wide coverage</i>. DR-Arena further adopts Adaptive Evolvement Loop, a state-machine controller that dynamically escalates task complexity based on real-time performance, demanding deeper deduction or wider aggregation until a decisive capability boundary emerges.
+            </p>
+            <p>
+              Experiments with six advanced DR agents demonstrate that DR-Arena achieves a Spearman correlation of <strong>0.94</strong> with the LMSYS Search Arena leaderboard. This represents the state-of-the-art alignment with human preferences without any manual efforts, validating DR-Arena as a reliable alternative for costly human adjudication.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered section-title">🏆 DR-Arena Leaderboard</h2>
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="box">
+            <table class="table is-striped is-hoverable is-fullwidth leaderboard-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Model</th>
+                  <th>DR-Arena ELO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="badge-first">1</span></td>
+                  <td class="has-text-weight-bold">GPT-5.1-Search</td>
+                  <td>1084</td>
+                </tr>
+                <tr>
+                  <td><span class="badge-second">2</span></td>
+                  <td>Gemini-2.5-Pro-Grounding</td>
+                  <td>1054</td>
+                </tr>
+                <tr>
+                  <td><span class="badge-third">3</span></td>
+                  <td>o3-Search</td>
+                  <td>1041</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Grok-4-Search</td>
+                  <td>958</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Perplexity-Sonar-Pro-High</td>
+                  <td>942</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Claude-Opus-4.1-Search</td>
+                  <td>921</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="notification is-info is-light has-text-centered" style="margin-top: 1rem;">
+              <span class="icon"><i class="fas fa-check-circle"></i></span>
+              <strong>State-of-the-Art Alignment:</strong> DR-Arena achieves a <strong>Spearman Correlation of 0.94</strong> with the human-verified LMSYS Search Arena rankings.
+            </div>
+            <p class="is-size-7 has-text-right">* Updated as of January 2026.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered section-title">Methodology</h2>
+      
+      <div class="box mb-6">
+        <figure class="image">
+          <img src="static/images/framework.png" alt="Overview of the DR-Arena Framework">
+        </figure>
+        <p class="figure-caption">
+          <strong>Figure 1: Overview of DR-Arena.</strong> The system operates as a closed-loop ecosystem with three stages: Dynamic Tree Construction, Automated Task Generation, and the Adaptive Evolvement Loop.
+        </p>
+      </div>
+
+      <div class="content mb-6">
+        <h3 class="title is-4">1. Automated Task Generation</h3>
+        <p>
+          To ensure task diversity, the Examiner samples a seed topic from Google Trends and constructs an information tree by scraping high-quality informative websites. The tree is expanded via <strong>Depth Expansion</strong> (for reasoning chains) and <strong>Width Expansion</strong> (for sibling aggregations). The Examiner then generates "Deep & Wide" questions that require traversing this topology, strictly avoiding data contamination.
+        </p>
+        <div class="box" style="background-color: #fcfcfc;">
+          <figure class="image">
+            <img src="static/images/task_generation.png" alt="Automated Task Generation" style="width: 100%;">
+          </figure>
+          <p class="figure-caption">
+            <strong>Figure 2: Task Generation.</strong> The Examiner transforms topological web structures into complex research queries.
+          </p>
+        </div>
+      </div>
+
+      <div class="content mb-6">
+        <h3 class="title is-4">2. Evidence-Based Judgement</h3>
+        <p>
+          Evaluating open-ended reports is inherently challenging. DR-Arena employs the Examiner as a Judge using a strict two-stage protocol:
+        </p>
+        <ul>
+          <li><strong>Hard Constraints:</strong> Verifying against the generated <i>Checklist-Depth</i> (Logic) and <i>Checklist-Width</i> (Data Completeness). Critical errors result in immediate penalties.</li>
+          <li><strong>Soft Constraints:</strong> Assessing user experience aspects such as presentation quality, formatting, and information density.</li>
+        </ul>
+        <p>
+          Based on these constraints, the system assigns a tiered verdict (<strong>Much Better</strong>, <strong>Better</strong>, or <strong>Tie</strong>) and diagnoses the specific failure type of the losing agent to guide future rounds.
+        </p>
+
+        <div class="box">
+          <h5 class="title is-6 has-text-centered">Table 1: Taxonomy of Failure Types</h5>
+          <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+              <tr>
+                <th style="width: 15%;">Failure Tag</th>
+                <th>Diagnostic Criteria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag is-danger is-light" style="font-weight:bold;">DEEP</span></td>
+                <td><strong>Logic Failure.</strong> Failed to identify the correct core entity due to a broken reasoning chain.</td>
+              </tr>
+              <tr>
+                <td><span class="tag is-warning is-light" style="font-weight:bold;">WIDE</span></td>
+                <td><strong>Coverage Failure.</strong> Failed to aggregate specific attribute details (Data Gap).</td>
+              </tr>
+              <tr>
+                <td><span class="tag is-dark is-light" style="font-weight:bold;">BOTH</span></td>
+                <td><strong>Systemic Failure.</strong> Failed on both logical identification and factual completeness.</td>
+              </tr>
+              <tr>
+                <td><span class="tag is-info is-light" style="font-weight:bold;">NONE</span></td>
+                <td><strong>Soft Gap.</strong> The loss was determined solely by soft filters (formatting or utility preferences).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="content">
+        <h3 class="title is-4">3. Adaptive Evolvement Loop </h3>
+        <p>
+          After each round, the Examiner operates on a targeted probing strategy. If agents reach a stalemate, the system intervenes to amplify differences:
+        </p>
+        <ul>
+          <li><strong>High-Quality Tie:</strong> The task is too easy. The system triggers a <strong>Pressure Test</strong>, increasing both Depth ($D$) and Width ($W$) to locate the capability ceiling.</li>
+          <li><strong>Marginal Win:</strong> The system aggressively targets the loser's specific weakness (probing either Depth or Width) to force a decisive breakdown.</li>
+        </ul>
+
+        <div class="box">
+          <h5 class="title is-6 has-text-centered">Table 2: The Evolvement Loop Transition Matrix</h5>
+          <div class="table-container">
+            <table class="table is-bordered is-hoverable is-fullwidth">
+              <thead>
+                <tr class="has-background-light">
+                  <th>Adjudication Verdict</th>
+                  <th>Diagnostic Signal</th>
+                  <th>Evolution Action</th>
+                  <th>Strategic Rationale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tie</strong> (High Quality)</td>
+                  <td>N/A</td>
+                  <td>
+                    <span class="tag is-primary">Pressure Test</span>
+                    <br>
+                    <span class="is-size-7">(D &uarr; 1 &amp; W &uarr; 1)</span>
+                  </td>
+                  <td>Current task too easy; find ceiling.</td>
+                </tr>
+                <tr>
+                  <td><strong>Tie</strong> (Low Quality)</td>
+                  <td>N/A</td>
+                  <td>
+                    <span class="tag is-light">Backtrack</span>
+                    <br>
+                    <span class="is-size-7">(Move to Parent)</span>
+                  </td>
+                  <td>Current task too hard; re-establish baseline.</td>
+                </tr>
+                <tr>
+                  <td rowspan="3" style="vertical-align: middle;"><strong>Winner Decided</strong></td>
+                  <td><span class="tag is-danger is-light">DEEP</span> (Logic Failure)</td>
+                  <td>
+                    <strong>Probe Depth</strong>
+                    <span class="is-size-7">(D &uarr; 1)</span>
+                  </td>
+                  <td>Challenge loser's reasoning capabilities.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag is-warning is-light">WIDE</span> (Retrieval Failure)</td>
+                  <td>
+                    <strong>Probe Width</strong>
+                    <span class="is-size-7">(W &uarr; 1)</span>
+                  </td>
+                  <td>Challenge loser's information coverage.</td>
+                </tr>
+                <tr>
+                  <td><span class="tag is-dark is-light">BOTH / NONE</span></td>
+                  <td>
+                    <strong>Pressure Test</strong>
+                    <br>
+                    <span class="is-size-7">(D &uarr; 1 &amp; W &uarr; 1)</span>
+                  </td>
+                  <td>Ambiguous failure; increase difficulty.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p>
+          This adaptive mechanism ensures the system efficiently converges to a verdict by continuously pushing agents toward their specific breakdown points, acting as an efficient sorting algorithm for AI capabilities.
+        </p>
+      </div>
+
+    </div>
+  </section>
+  <section class="section is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered section-title">Experimental Analysis</h2>
+
+      <div class="columns is-variable is-6 mb-6">
+        <div class="column is-6">
+          <div class="box" style="height: 100%;">
+            <h4 class="title is-4 has-text-centered">Human Alignment</h4>
+            <figure class="image mb-4">
+               
+              <img src="static/images/correlation.png" alt="Elo Correlation">
+            </figure>
+            <p>
+              DR-Arena achieves superior alignment with human preferences compared to existing benchmarks, accurately recovering the hierarchy of the LMSYS Search Arena. The linear mapping confirms that our automated metrics effectively proxy human preference without manual annotation.
+            </p>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="box" style="height: 100%;">
+            <h4 class="title is-4 has-text-centered">Adaptive Efficiency</h4>
+            <figure class="image mb-4">
+              
+              <img src="static/images/efficiency.png" alt="Rounds vs Skill Gap">
+            </figure>
+            <p>
+              The system converges rapidly for high-divergence pairs. We observe a significant negative correlation (r = -0.61) between skill gap and rounds, confirming that the loop acts as an efficient sorting algorithm, concentrating computational resources on distinguishing closely matched models.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="box mb-6">
+        <h4 class="title is-4 has-text-centered">Cognitive Profiles: Error Distribution</h4>
+        
+        <figure class="image is-fullwidth mb-5">
+           
+          <img src="static/images/error_dist.png" alt="Error Distribution" style="max-height: 400px; object-fit: contain;">
+          <p class="figure-caption"><strong>Figure 3: Per-Model Performance Profile.</strong> Models are ordered by their overall failure rates (at the top).</p>
+        </figure>
+
+        <div class="content">
+          <p>
+            To provide a closer look into each model's performance profile, we dissect failure types in Figure 3. We define the Failure Rate as the ratio of non-winning rounds (including losses and ties) to the total number of rounds. Ordering models by this metric reveals a clear robustness hierarchy, with <strong>GPT-5.1-Search</strong> demonstrating the highest stability with a minimum failure rate of 50.17%.
+          </p>
+          <p>
+            Beyond aggregate rates, the normalized failure distribution exposes architectural trade-offs:
+          </p>
+          <ul>
+            <li>
+              <strong>GPT-5.1-Search</strong> exhibits symmetric errors (27% Deep, 26% Wide), suggesting balanced capabilities without structural bottlenecks.
+            </li>
+            <li>
+              <strong>o3-Search</strong> shows asymmetry favoring logical deduction: despite higher total failures, it has the lowest <span style="color: #d00000; font-weight: bold;">DEEP</span> failure rate (19%), with limitations primarily in coverage breadth (<span style="color: #d08800; font-weight: bold;">WIDE</span>: 30%).
+            </li>
+            <li>
+              Models like <strong>PPL-Sonar-Pro</strong> and <strong>Grok-4</strong> display the inverse pattern, with failures skewed toward DEEP reasoning deficits, indicating effective retrieval but inconsistent logical reasoning.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="title is-4 has-text-centered mt-6 mb-4" style="border-top: 1px solid #ddd; padding-top: 2rem;">Detailed Dataset Diagnostics</h3>
+      <p class="has-text-centered mb-5">A macro-level statistical analysis of the full tournament dataset, covering 789 unique interaction rounds.</p>
+      
+      <div class="columns is-variable is-6">
+        <div class="column is-6">
+          <div class="box" style="height: 100%;">
+            <h5 class="title is-5">Verdict & Failure Modes</h5>
+            <figure class="image mb-3">
+              
+              <img src="static/images/overall_diagnostics.png" alt="Verdict Distribution">
+            </figure>
+            <div class="content is-small">
+              <p>
+                The <strong>"Better"</strong> verdict (49.9%) significantly outnumbers "Much Better" (32.8%), indicating that top-tier agents often differentiate themselves through marginal improvements rather than catastrophic failures.
+              </p>
+              <p>
+                Failure types are remarkably balanced between <strong>DEEP</strong> (32.3%) and <strong>WIDE</strong> (30.0%). This validates that our "Deep & Wide" strategy successfully exerts equal pressure on reasoning and aggregation capabilities.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column is-6">
+          <div class="box" style="height: 100%;">
+            <h5 class="title is-5">Topological Complexity</h5>
+            <figure class="image mb-3">
+              
+              <img src="static/images/topology.png" alt="Topological Complexity">
+            </figure>
+            <div class="content is-small">
+              <p>
+                <strong>Tree Depth:</strong> While peaking at Depth 2, the distribution has a long tail extending to Depth 8, confirming the system's ability to generate long-horizon deduction tasks.
+              </p>
+              <p>
+                <strong>Width Constraint:</strong> A notable portion of tasks requires synthesizing 4 to 7 distinct data points, effectively testing context window management and retrieval recall.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Website template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://auto-arena.github.io/">Auto-Arena</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
